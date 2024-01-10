@@ -19,7 +19,18 @@
 }
 ```
 - `npx sequelize init`
-- once you have added your db config as listed above , go to src folder from your terminal and execute `npx sequelize db:create`
+- once you have added your db config as listed above , go to src folder from your terminal and execute `npx sequelize db:create` & then execute `npx sequelize db:migrate`
+- 
+
+
+
+
+
+
+
+
+
+---
  
 # DB design
   - airplane table 
