@@ -1,29 +1,59 @@
 const { City } = require('../models/index');
 
-//city model : 
+//! responsible for communicating with any data source 
+// like create , delete , update , i.e , crud etc...
+// creating separately from controllers or services or models 
 
 class CityRepository {
-    async createCity({name}) {
+    
+    async createCity({ name , last_name , age}) { // { name : "john", last_name: "doe", age:23}
+
         try {
-            const city = await City.create({name});
+            const city = await City.create({
+                name,
+                last_name,
+                age
+            })
             return city;
-        } catch(err) {
-            throw { err};
+        } catch(error) {
+            console.log(`something went wrong in the repository layer: `);
+            throw {error};
         }
+
+
     }
 
     async deleteCity(cityId) {
-        try {
-            await City.destroy({
-                //where clause 
-                where: {
-                    id: cityId
-                }
-            });
-            
-        } catch(err) {
-            throw{err};
+       try {
+        await City.destroy({
+            where : {
+                id : cityId
+            }
+        })
+        return true;
+       } catch(error) {
+        console.log(`something went wrong in the repository layer: `);
+        throw {error};
         }
+    } 
+
+
+    async updateCity(cityId , data) {
+        try {
+            const city = await City.update(data , {
+                where : {
+                    id : cityId
+                }
+            })
+        } catch (error) {
+            console.log(`something went wrong in the repository layer: `);
+            throw {error};
+        }
+    }
+
+    async getCity(cityId) {
+        const city = await City.findByPk(cityId);
+        return city;
     }
 }
 
