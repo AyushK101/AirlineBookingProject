@@ -32,7 +32,7 @@ const create = async (req,res) =>{
 // data => req.params.id
 const destroy = async (req,res) =>{
     try {
-        const response = await cityService.destroyCity(req.params.id); 
+        const response = await cityService.deleteCity(req.params.id); 
         return res.status(200).json({
             data: response,
             success: true,
@@ -56,7 +56,7 @@ const destroy = async (req,res) =>{
 const update = async (req,res) =>{
     try {
         const response = await cityService.updateCity(req.params.id, req.body);
-        return res.status().json({
+        return res.status(200).send({
             data: response,
             success: true,
             message: 'successfully updated the city',
@@ -66,7 +66,7 @@ const update = async (req,res) =>{
 
     } catch(error) {
         console.log(error);
-        return res.status(500).json({
+        return res.status(500).send({
             data: {},
             success: false,
             message: 'not able to update the city',

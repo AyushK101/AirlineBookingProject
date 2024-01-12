@@ -6,14 +6,10 @@ const { City } = require('../models/index');
 
 class CityRepository {
     
-    async createCity({ name , last_name , age}) { // { name : "john", last_name: "doe", age:23}
+    async createCity({ name }) { // { name : "john", last_name: "doe", age:23}
 
         try {
-            const city = await City.create({
-                name,
-                last_name,
-                age
-            })
+            const city = await City.create({ name });
             return city;
         } catch(error) {
             console.log(`something went wrong in the repository layer: `);
@@ -53,8 +49,17 @@ class CityRepository {
     }
 
     async getCity(cityId) {
-        const city = await City.findByPk(cityId); // find on the primary key
-        return city;
+        try{
+            const city = await City.findOne({
+                where : {
+                    id : cityId
+                }
+            }); // find on the primary key
+            return city;
+        } catch(error) {
+            console.log(`something went wrong in the repository layer: `);
+            throw { error};
+        }
     }
 }
 
