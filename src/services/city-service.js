@@ -1,7 +1,17 @@
+// services should be called form controller 
+
+// Requests come to controllers , and this controller pass-on the request's data to the service and repository layer
+// They will process things & give it back to controller & then controller will form your response structure & send 
+ // back  to the user.
+
+ / map the routes to the controllers/
+    
+
 const { cityRepository } = require('../repository/index'); 
 
 
 class CityService {
+    // another method ; different from repository method 
     constructor() {
         this.cityRepository = new cityRepository(); // will create a property inside instance with value itself a instance of cityRepository 
     }
@@ -14,8 +24,6 @@ class CityService {
             console.log(`Something went wrong at service layer `);
             throw {error};
         }
-
-
     }
 
     async deleteCity(cityId) {
@@ -47,11 +55,6 @@ class CityService {
             throw { error };
         }
     }
-
-    
-     
-
-
 }
 
 

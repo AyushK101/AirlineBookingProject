@@ -1,22 +1,25 @@
 // purpose fo this file : to boot up the server
 
-const Express = require("express");
+const express = require("express");
 const { PORT } = require("./config/serverConfig");
 
+const ApiRoutes = require('./routes/index');
 const CityRepository = require('./repository/city-repository');
 
 
 const setupAndStartServer = async () => {
   //create the server
-  const app = Express();
-  app.use(Express.json());
-  app.use(Express.urlencoded({ extended: true }));
+  const app = express();
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+
+
+  app.use('/api', ApiRoutes);
 
 
   app.listen(PORT, () => {
     console.log(`server started listening on port : ${PORT}`);
-    const repo = new CityRepository(); 
-    repo.createCity({name : "yww"});
+   
 
   });
 };
