@@ -1,6 +1,7 @@
 //todo_ controller is the final function in express route handlers.
 
 
+const city = require('../models/city');
 const  { CityService } = require('../services/index'); 
 
 const cityService = new CityService();
@@ -100,8 +101,8 @@ const get = async (req,res) =>{
 
 const getAll = async (req, res) =>{
     try {
-        const cities = await cityService.getAllCities();
-        return res.status(200).json({                    //fetching in the form of an array.
+        const cities = await cityService.getAllCities(req.query);
+        return res.status(200).json({                               //?fetching in the form of an array.
             data: cities,
             success: true,
             message: 'successfully fetched the cities',
