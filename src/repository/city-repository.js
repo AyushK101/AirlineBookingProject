@@ -1,11 +1,14 @@
 const { City } = require('../models/index');
 
+/ model is being consumed by repository layer /;
+/ the repository functions are consumed in service layer /
+
 //! responsible for communicating with any data source 
 // like create , delete , update , i.e , crud etc...
 // creating separately from controllers or services or models 
 
 class CityRepository {
-    
+
     async createCity({ name }) { // { name : "john", last_name: "doe", age:23}
 
         try {
@@ -68,6 +71,17 @@ class CityRepository {
             console.log(`something went wrong in the repository layer: `);
             throw { error};
         }
+    }
+
+    async getAllCities() {
+        try {
+            const cities = await City.findAll();
+            return cities; 
+        } catch(error) {
+            console.log(`something went wrong on the repository layer`);
+            throw { error };
+        } 
+
     }
 }
 

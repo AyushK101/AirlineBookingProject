@@ -3,7 +3,6 @@
 const express = require("express");
 const  { PORT } = require("./config/serverConfig");
 const ApiRoutes = require('./routes/index');
-const CityRepository = require('./repository/city-repository');
 
 
 const setupAndStartServer = async () => {
