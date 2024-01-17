@@ -20,16 +20,6 @@
 ```
 - `npx sequelize init`
 - once you have added your db config as listed above , go to src folder from your terminal and execute `npx sequelize db:create` & then execute `npx sequelize db:migrate`
-- 
-
-
-
-
-
-
-
-
-
 ---
  
 # DB design
@@ -42,5 +32,16 @@
   - a city has many airport but one airport belongs to one city only
   - one airports can have many flights , but a flight belongs to one airport
   
+
+## Tables
+
+### `City` -> id, name, created_at, updated_at
+### `Airport` -> id, name, address, city_id, created_at, updated_at  
+  relationship -> city has many airports & airport belongs to a city ( one to many)
+  > `one`: won't store any relationship data
+  > `many`: will store some relationship data like city_id
+
+
+
 
 
